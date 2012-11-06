@@ -11,7 +11,8 @@
     "grunt": ">=0.3.16",
     "jasmine-node": "*",
     "grunt-jasmine-node": "0.0.2",
-    "grunt-requirejs": "*"
+    "grunt-requirejs": "*",
+    "requirejs": "*"
   },
   "scripts": {
     "test": "TODO"
