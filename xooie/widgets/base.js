@@ -14,7 +14,7 @@
 *   limitations under the License.
 */
 
-define('xooie/widgets/base', ['jquery', 'xooie', 'xooie/stylesheet'], function($, $X, Stylesheet) {
+define('xooie/base', ['jquery', 'xooie', 'xooie/stylesheet'], function($, $X, Stylesheet) {
      //things I want to be able to do:
     //  Extend and module
     //  create stylesheet that can be modified
