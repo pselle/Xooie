@@ -1,4 +1,5 @@
 require 'json'
+require 'fileutils'
 
 FileUtils.mkdir_p 'vendor/assets/javascripts'
 
@@ -22,7 +23,6 @@ Gem::Specification.new do |s|
     'vendor/assets/javascripts/xooie.js',
     'vendor/assets/javascripts/xooie/**/*',
     'lib/xooie.rb',
-    'lib/Xooie/**/*',
     'README.md',
     'License.txt'
   ]
