@@ -11,7 +11,7 @@ define('xooie/widgets/accordion', ['jquery', 'xooie/widgets/tab'], function($, T
 
         if ([13,32].indexOf(event.which) !== -1){
           if (activeTab.is(this)) {
-            self.deactivateTab(activeTab);
+            self.deactivateTab($(this));
           } else {
             self.activateTab($(this));
           }
@@ -24,7 +24,7 @@ define('xooie/widgets/accordion', ['jquery', 'xooie/widgets/tab'], function($, T
         var activeTab = self.getActiveTabs();
 
         if (activeTab.is(this)) {
-          self.deactivateTab(activeTab);
+          self.deactivateTab($(this));
         } else {
           self.activateTab($(this));
         }

@@ -1,0 +1,71 @@
+---
+title: Xooie - Extend
+---
+
+<h1 class="x-h1">Extend</h1>
+
+<div class="x-block-full">
+    <p>Need to add new functionality?  The Xooie <code>extend</code> method allows you to copy all the functionality from an existing widget into a completely new widget, where you can add your own functionality as you see fit.</p>
+</div>
+
+<div class="x-block-full">
+    <h2 class="x-h2">Load the module using AMD</h2>
+
+    <p>Xooie uses the Asyncronous Module Definition (AMD) pattern to load modules.  To create a new widget, define a new AMD module and require the widget you wish to extend:</p>
+
+    <pre><code>
+        define('my_widget', ['jquery', 'widgets/tab'], function($, Tab){
+            //...
+        });
+    </code></pre>
+
+    <a class="x-link" href="http://requirejs.org" target="_blank">More information on AMD and RequireJS</a>
+</div>
+
+<div class="x-block-full">
+    <h2 class="x-h2">Call the extend method on the parent class</h2>
+
+    <p>Every Xooie widget has an extend method that allows you to inherit all properties, roles and functions from one widget into another:</p>
+
+    <pre><code>
+        define('my_widget', ['jquery', 'widgets/tab'], function($, Tab){
+            var MyWidget = Tab.extend(function(){
+                // constructor functionality
+            });
+
+            return MyWidget;
+        });
+    </code></pre>
+</div>
+
+<div class="x-block-full">
+    <h2 class="x-h2">Define new properties, roles or methods</h2>
+
+    <p>Once your widget has been defined you can define new properties, define roles and add new methods that are specific to the new widget:</p>
+
+    <pre><code>
+        define('my_widget', ['jquery', 'widgets/tab'], function($, Tab){
+            var MyWidget = Tab.extend(function(){
+                // constructor functionality
+            });
+
+            // define a new default namespace to set the correct namespace value for events, etc.
+            MyWidget.define('namespace', 'my_widget');
+
+            MyWidget.define('foo');
+
+            // Define 'bar' with a default value of 'baz'
+            MyWidget.define('bar', 'baz');
+
+            MyWidget.prototype.someMethod = function(){
+                // method functionality
+            };
+
+            return MyWidget;
+        });
+    </code></pre>
+
+    <p>Remember to return the widget from the closure.</p>
+
+    <p>You can now load your new widget by setting the <code>data-widget-type</code> to "my_widget"</p>
+</div>

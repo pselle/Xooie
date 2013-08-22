@@ -1,0 +1,33 @@
+@import 'compass';
+@import 'variables';
+@import 'mixins';
+
+.x-demo-carousel {
+    .xooie-carousel-content {
+        border: $dark_border;
+
+        li {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            margin-right: 10px
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .xooie-carousel-control {
+        position: absolute;
+        top: 50px;
+
+        &.left {
+            left: 0;
+        }
+
+        &.right {
+            right: 0;
+        }
+    }
+}

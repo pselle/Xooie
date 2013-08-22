@@ -13,7 +13,9 @@ body {
 }
 
 .x-h1 {
-
+    @include heading;
+    font-size: $huge;
+    padding: base(1) base(5) base(2)
 }
 
 .x-h2 {

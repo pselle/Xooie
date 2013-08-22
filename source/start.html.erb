@@ -1,0 +1,59 @@
+---
+title: Xooie - Getting Started
+---
+
+<h1 class="x-h1">Getting Started With Xooie</h1>
+
+<div class="x-block-full">
+    <p>Getting started with Xooie is as easy as 1, 2, 3...</p>
+</div>
+
+<div class="x-block-full">
+    <h2 class="x-h2">1. Set a widget type</h2>
+
+    <p>Pick a widget type and set the <code>data-widget-type</code> attribute on the root element of your widget:</p>
+
+    <pre><code>
+        &lt;div <b>data-widget-type="tab"</b>&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a&gt;Tab 3&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;div&gt;Content for Tab 1&lt;/div&gt;
+
+            &lt;div&gt;Content for Tab 2&lt;/div&gt;
+
+            &lt;div&gt;Content for Tab 3&lt;/div&gt;
+        &lt;/div&gt;
+    </code></pre>
+</div>
+
+<div class="x-block-full">
+    <h2 class="x-h2">2. Define your roles</h2>
+
+    <p>Add the appropriate <code>data-x-role</code> attributes to the key elements in your widget:</p>
+
+    <pre><code>
+        &lt;div <b>data-widget-type="tab"</b>&gt;
+            &lt;ul <b>data-x-role="tablist"</b>&gt;
+                &lt;li&gt;&lt;a <b>data-x-role="tab"</b>&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a <b>data-x-role="tab"</b>&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a <b>data-x-role="tab"</b>&gt;Tab 3&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;div <b>data-x-role="tabpanel"</b>&gt;Content for Tab 1&lt;/div&gt;
+
+            &lt;div <b>data-x-role="tabpanel"</b>&gt;Content for Tab 2&lt;/div&gt;
+
+            &lt;div <b>data-x-role="tabpanel"</b>&gt;Content for Tab 3&lt;/div&gt;
+        &lt;/div&gt;
+    </code></pre>
+</div>
+
+<div class="x-block-full">
+    <h2 class="x-h2">3. Test your page</h2>
+
+    <p>Xooie widgets automatically instantiate when you load the page, so there's no JavaScript code to write.  It's that easy!</p>
+</div>

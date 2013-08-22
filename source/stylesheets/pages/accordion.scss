@@ -2,3 +2,29 @@
 @import 'variables';
 @import 'mixins';
 
+.x-demo-accordion-control{
+    @include link;
+    padding: base(2);
+    background-color: $blue;
+    color: $almost_white;
+    width: 100%;
+    text-align: left;
+
+    &:hover,
+    &:focus {
+        background-color: $light_blue;
+        color: $white;
+    }
+
+
+}
+
+.x-demo-accordion-panel {
+    height: 0;
+    overflow: hidden;
+    @include height_transition;
+
+    &.is-tab-active {
+        height: auto;
+    }
+}
