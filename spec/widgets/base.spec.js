@@ -87,53 +87,6 @@ require(['jquery', 'xooie/widgets/base', 'xooie/shared'], function($, Widget, Sh
         expect(testVal).toBe(true);
       });
 
-      it('delays triggering the init event if there are constructors to be called', function(){
-        var testVal = false,
-            element = $('<div />'),
-            WidgetExtend = Widget.extend(function() { return true; });
-
-        element.on('xooie-init', function(){
-          testVal = true;
-        });
-
-        this.widget = new WidgetExtend(element);
-
-        expect(testVal).toBe(false);
-
-        waitsFor(function(){
-          return this.widget._extendCount === null;
-        });
-
-        runs(function(){
-          expect(testVal).toBe(true);
-        });
-      });
-
-      it('delays loading addons if there are inherited constructors to be called', function(){
-        var testVal = false,
-            element = $('<div />'),
-            WidgetExtend = Widget.extend(function() { return true; }),
-            addon = function() {
-                testVal = true;
-            };
-
-        element.on('xooie-init', function(){
-          testVal = true;
-        });
-
-        this.widget = new WidgetExtend(element, [addon]);
-
-        expect(testVal).toBe(false);
-
-        waitsFor(function(){
-          return this.widget._extendCount === null;
-        });
-
-        runs(function(){
-          expect(testVal).toBe(true);
-        });
-      });
-
       it('binds an event handler to the initEvent that calls _applyRoles', function(){
         spyOn(this.widget, '_applyRoles');
 
@@ -289,14 +242,15 @@ require(['jquery', 'xooie/widgets/base', 'xooie/shared'], function($, Widget, Sh
     });
 
     describe('When extending the Widget...', function(){
-      it('calls the Shared extend method', function(){
-        spyOn(Shared, 'extend');
+      it('calls the Shared create method', function(){
+        spyOn(Shared, 'create');
 
-        var constructor = function(){};
+        var constructor = function(){},
+            post_constructor = function(){};
 
-        Widget.extend(constructor);
+        Widget.extend(constructor, post_constructor);
 
-        expect(Shared.extend).toHaveBeenCalledWith(constructor, Widget);
+        expect(Shared.create).toHaveBeenCalledWith(constructor, post_constructor, Widget);
       });
     });
 
