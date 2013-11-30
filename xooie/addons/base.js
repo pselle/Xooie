@@ -38,9 +38,7 @@ define('xooie/addons/base', ['xooie/shared', 'xooie/helpers'], function (shared,
  * Instantiating a new Addon associates the addon with the widget passed into the constructor.  The addon is
  * stored in the [[Xooie.Widget#addons]] collection.
  **/
-  Addon = function (widget) {
-    var initCheck, self = this;
-
+  Addon = shared.create(function (widget) {
     // Check to see if the module is defined:
     if (helpers.isUndefined(widget)) {
       return false;
@@ -61,23 +59,9 @@ define('xooie/addons/base', ['xooie/shared', 'xooie/helpers'], function (shared,
 
     // Reference the widget:
     this.widget(widget);
-
-    // Check to see if there are any additional constructors to call;
-    initCheck = function () {
-      if (!self._extendCount || self._extendCount <= 0) {
-        self.widget().root().trigger(self.get('initEvent'));
-        self._extendCount = null;
-      } else {
-        setTimeout(initCheck, 0);
-      }
-    };
-
-    if (this._extendCount > 0) {
-      setTimeout(initCheck, 0);
-    } else {
-      initCheck();
-    }
-  };
+  }, function () {
+    this.widget().root().trigger(this.get('initEvent'));
+  });
 
 /**
  * Xooie.Addon.defineReadOnly(name, defaultValue)
@@ -117,10 +101,10 @@ define('xooie/addons/base', ['xooie/shared', 'xooie/helpers'], function (shared,
  * Xooie.Addon.extend(constr) -> Addon
  * - constr (Function): The constructor for the new [[Xooie.Addon]] class.
  *
- * See [[Xooie.shared.extend]].
+ * See [[Xooie.shared.create]].
  **/
-  Addon.extend = function (constr) {
-    return shared.extend(constr, this);
+  Addon.extend = function (constr, post_constr) {
+    return shared.create(constr, post_constr, this);
   };
 
 /** internal
@@ -131,6 +115,7 @@ define('xooie/addons/base', ['xooie/shared', 'xooie/helpers'], function (shared,
   Addon.prototype._definedProps = [];
 
 /** internal
+<<<<<<< HEAD
  * Xooie.Addon#_extendCount -> Integer | null
  *
  * Same as [[Xooie.Widget#_extendCount]].
@@ -138,6 +123,8 @@ define('xooie/addons/base', ['xooie/shared', 'xooie/helpers'], function (shared,
   Addon.prototype._extendCount = null;
 
 /** internal
+=======
+>>>>>>> bcde81f4a5817b1ab23f9f90ab6dd67cd86867b8
  * Xooie.Addon#_widget -> Widget
  *
  * The widget for which this addon was instantiated.
