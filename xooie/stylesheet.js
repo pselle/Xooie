@@ -14,17 +14,8 @@
 *   limitations under the License.
 */
 
-define('xooie/stylesheet', ['jquery', 'xooie/helpers'], function ($, helpers) {
+define('xooie/stylesheet', ['jquery'], function ($) {
   'use strict';
-
-  function nameCheck(index, name) {
-    var s = document.styleSheets[index];
-
-    if (!helpers.isUndefined(s.ownerNode)) {
-      return s.ownerNode.getAttribute('id') === name;
-    }
-    return s.id === name;
-  }
 
   var Stylesheet = function (name) {
     //check to see if a stylesheet already exists with this name
@@ -43,7 +34,7 @@ define('xooie/stylesheet', ['jquery', 'xooie/helpers'], function ($, helpers) {
   };
 
   Stylesheet.prototype.get = function () {
-    return document.styleSheets[this.getIndex()];
+    return this.element[0].sheet || this.element[0].styleSheet;
   };
 
   Stylesheet.prototype.getRule = function (ruleName) {
@@ -64,7 +55,7 @@ define('xooie/stylesheet', ['jquery', 'xooie/helpers'], function ($, helpers) {
   };
 
   Stylesheet.prototype.addRule = function (ruleName, properties) {
-    var rule = this.getRule(ruleName), index, prop, propString = '';
+    var rule = this.getRule(ruleName), index, prop, propString = '', ruleNameArray, i;
 
     if (!rule) {
       for (prop in properties) {
@@ -81,7 +72,12 @@ define('xooie/stylesheet', ['jquery', 'xooie/helpers'], function ($, helpers) {
       } else {
         //support for IE < 9
         index = this.get().rules.length;
-        this.get().addRule(ruleName, propString, index);
+        ruleNameArray = ruleName.split(',');
+        // READ: http://msdn.microsoft.com/en-us/library/ie/aa358796%28v=vs.85%29.aspx
+        for (i = 0; i < ruleNameArray.length; i += 1) {
+          this.get().addRule(ruleNameArray[i], propString, index + i);
+        }
+
         rule = this.get().rules[index];
       }
     }
@@ -112,25 +108,6 @@ define('xooie/stylesheet', ['jquery', 'xooie/helpers'], function ($, helpers) {
     }
 
     return false;
-  };
-
-  Stylesheet.prototype.getIndex = function () {
-    var i;
-
-    if (helpers.isUndefined(document.styleSheets)) {
-      return;
-    }
-
-    if (!helpers.isUndefined(this._index) && nameCheck(this._index, this._name)) {
-      return this._index;
-    }
-
-    for (i = 0; i < document.styleSheets.length; i += 1) {
-      if (nameCheck(i, this._name)) {
-        this._index = i;
-        return i;
-      }
-    }
   };
 
   return Stylesheet;
