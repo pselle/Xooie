@@ -23,7 +23,7 @@ v1.0 is our official release of Xooie. All new feature development & bug fixes o
 
 If you were already using a pre-1.0 release of Xooie, there is a [release_0_1_x branch](https://github.com/Comcast/Xooie/tree/release_0_1_x) that is updated with bug fixes only. Any 0.1.x release is from the pre-1.0 Xooie development work.
 
-Getting Started developing
+Getting Started (Developing)
 ---
 
 1. `git clone` this repository
